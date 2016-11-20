@@ -22,11 +22,11 @@ done
 
 mac="$mac$(get_byte)"
 
-if [[ -n $1 ]] && [[ -n $(ip link show dev $1) ]]
+if [[ -n "$1" && -n "$(ip link show dev $1)" ]]
 then
-    ip link set dev $1 down &&
-    ip link set dev $1 address $mac &&
-    ip link set dev $1 up &&
+    ip link set dev "$1" down &&
+    ip link set dev "$1" address $mac &&
+    ip link set dev "$1" up &&
     echo "Changed $1's MAC to $mac!"
 else
     echo "Invalid or no interface specified!"
