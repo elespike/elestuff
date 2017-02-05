@@ -3,7 +3,7 @@
 ip link show dev ${1} &> /dev/null
 if [[ ${?} != 0 ]]
 then
-    echo "Usage: chmac.sh <ifname>"
+    echo "Usage: ${0} IFNAME"
     exit
 fi
 
