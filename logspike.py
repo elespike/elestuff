@@ -24,6 +24,10 @@ class Logspike:
 
         self.initialize_logger(level)
 
+        def status(message):
+            self.logger.log(Logspike.STATUS, message)
+        self.logger.status = status
+
     def initialize_logger(self, level):
         fmt='%(asctime)s:%(msecs)03d [%(levelname)s] %(message)s\n'
         datefmt='%H:%M:%S'
@@ -36,9 +40,9 @@ class Logspike:
         addLevelName(Logspike.STATUS, 'STATUS')
         self.logger.setLevel(level)
 
-    def set_logging_level(self, level):
+    def set_verbosity(self, level):
         if level in self.verbosity_translator:
             newlvl = self.verbosity_translator[level]
             self.logger.setLevel(newlvl)
-        self.logger.log(Logspike.STATUS, 'Verbosity set to {}'.format(getLevelName(newlvl)))
+        self.logger.status('Verbosity set to {}'.format(getLevelName(newlvl)))
 
