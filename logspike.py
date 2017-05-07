@@ -24,8 +24,8 @@ class Logspike:
 
         self.initialize_logger(level)
 
-        def status(message):
-            self.logger.log(Logspike.STATUS, message)
+        def status(message, *args, **kwargs):
+            self.logger.log(Logspike.STATUS, message, *args, **kwargs)
         self.logger.status = status
 
     def initialize_logger(self, level):
@@ -42,7 +42,7 @@ class Logspike:
 
     def set_verbosity(self, level):
         if level in self.verbosity_translator:
-            newlvl = self.verbosity_translator[level]
-            self.logger.setLevel(newlvl)
-        self.logger.status('Verbosity set to {}'.format(getLevelName(newlvl)))
+            level = self.verbosity_translator[level]
+            self.logger.setLevel(level)
+        self.logger.status('Verbosity set to {}'.format(getLevelName(level)))
 
